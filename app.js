@@ -12,6 +12,8 @@ function agregarAmigo(){
 
     nombreAmigo = nombreAmigo.trim(); // Para eliminar espacios en blanco al inicio y final
 
+    // Validación de nombre repetido
+    // Convierte nombre a minusculas para validar
     let nombreAmigoLowerCase = nombreAmigo.toLowerCase();
     if (amigos.some(amigoExistente => amigoExistente.toLowerCase() === nombreAmigoLowerCase)) {
         alert("¡Ese nombre ya ha sido agregado! Por favor, inserte un nombre diferente.");
@@ -24,9 +26,6 @@ function agregarAmigo(){
     document.getElementById('amigo').value = ''; // Limpia el campo
 
     actualizarListaAmigos();
-
-    console.log("Amigo agregado:", nombreAmigo);
-    console.log("Lista de amigos actual:", amigos);
 
 }
 
@@ -61,6 +60,20 @@ function sortearAmigo(){
     let liResultado = document.createElement('li');
     liResultado.textContent = `¡Tu amigo secreto es: ${amigoSorteado}!`;
     resultadoHTML.appendChild(liResultado);
+}
+
+// Función para el botón de reinicio
+function reiniciar() {
+    // Vacia el array de amigos
+    amigos = [];
+
+    // Limpiar la lista de nombres mostrada en el HTML
+    actualizarListaAmigos(); 
+
+    document.getElementById('resultado').innerHTML = ''; // Limpia el resultado del sorteo previo
+
+    document.getElementById('amigo').value = ''; // Limpia el campo de entrada de nombres
+
 }
 
 // Agregar el nombre del amigo al accionar la tecla enter.

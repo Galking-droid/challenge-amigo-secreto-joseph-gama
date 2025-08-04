@@ -160,3 +160,14 @@ ul {
 .button-draw:hover {
     background-color: var(--color-button-hover);
 }
+
+.button-reiniciar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 40px;
+    color: var(--color-text);
+    background-color: var(--color-tertiary);
+    font-size: 16px;
+    justify-content: center;
+}

@@ -37,8 +37,23 @@ function actualizarListaAmigos(){
      for (let i = 0; i < amigos.length; i++) {
         let li = document.createElement('li'); // Crea elemento lista
         li.textContent = amigos[i]; // Asigna el nombre del amigo como contenido de la lista
+        
+        // Boton para eliminar nombres
+        let botonEliminar = document.createElement('button');
+        botonEliminar.textContent = 'X'; // O 'Eliminar', o un ícono si tienes Font Awesome
+        botonEliminar.classList.add('boton-eliminar'); // Para darle estilos en CSS
+
+        // Función para habilitar click para eliminar
+        botonEliminar.onclick = function() {
+            excluirAmigo(i); // Llamamos a la nueva función con el índice del amigo
+        };
+
+        li.appendChild(botonEliminar); // Añade botón a la lista
+        
         listaAmigos.appendChild(li);
     }
+
+        
 }
 
 // Función para sortear los amigos
@@ -58,8 +73,20 @@ function sortearAmigo(){
 
     // Muestra el resultado
     let liResultado = document.createElement('li');
-    liResultado.textContent = `¡Tu amigo secreto es: ${amigoSorteado}!`;
+    liResultado.textContent = `¡Su amigo secreto es: ${amigoSorteado}!`;
     resultadoHTML.appendChild(liResultado);
+}
+
+// Función excluir amigo del array
+function excluirAmigo(indice) {
+    // Splice para eliminar elementos del array
+    amigos.splice(indice, 1); 
+    
+    // Vuelve a llamar a actualizarListaAmigos para que la interfaz se refresque
+    actualizarListaAmigos();
+
+    // Para limpiar el sorteo, si ya estaba en función.
+    document.getElementById('resultado').innerHTML = ''; 
 }
 
 // Función para el botón de reinicio

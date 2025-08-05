@@ -4,6 +4,8 @@ Este repositorio contiene mi implementación del desafío "Amigo Secreto" propue
 
 El objetivo de este proyecto es desarrollar una aplicación web sencilla que permite a los usuarios **gestionar una lista de participantes** y realizar un **sorteo aleatorio** para determinar un "amigo secreto".
 
+### **🔗 Ver en vivo la aplicación:** [https://challenge-amigo-secreto-joseph-gama.vercel.app/](https://challenge-amigo-secreto-joseph-gama.vercel.app/)
+
 ---
 
 ## Características
@@ -12,6 +14,7 @@ Esta aplicación incluye las siguientes funcionalidades:
 
 * **Gestión de Nombres:**
     * **Agregar Amigos:** Permite añadir nombres de participantes a una lista.
+    * **Eliminar Amigos:** Permite quitar nombres individuales de la lista en caso de error.
     * **Validación de Entrada:** Asegura que no se añadan nombres vacíos o que solo contengan espacios.
     * **Validación de Duplicados:** Evita que se agreguen nombres repetidos en la lista.
     * **Visualización de Lista:** Muestra claramente todos los nombres agregados en la interfaz.
@@ -35,13 +38,17 @@ Esta aplicación incluye las siguientes funcionalidades:
 
 Tienes dos maneras de usar esta aplicación:
 
-### Opción 1: Clonar y Abrir
+### Opción 1: Ver y Usar en Línea (Sin necesidad de instalar nada)
+
+1.  Simplemente haz clic en el siguiente enlace para ver la aplicación funcionando en tu navegador:
+    [**https://challenge-amigo-secreto-joseph-gama.vercel.app/**](https://challenge-amigo-secreto-joseph-gama.vercel.app/)
+
+### Opción 2: Clonar y Abrir
 
 1.  **Clonar el Repositorio:**
     Abre tu terminal o línea de comandos y ejecuta el siguiente comando para descargar el proyecto:
     ```bash
-    git clone https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git
-    ```
+    git clone [https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git](https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git)
 
 2.  **Acceder al Directorio del Proyecto:**
     Navega al directorio del proyecto que acabas de clonar:
@@ -52,22 +59,12 @@ Tienes dos maneras de usar esta aplicación:
 3.  **Abrir en el Navegador:**
     Una vez dentro del directorio, abre el archivo `index.html` en tu navegador web preferido. Puedes hacerlo haciendo doble clic en el archivo o arrastrándolo a la ventana del navegador.
 
-### Opción 2: Descargar y Abrir
-
-1.  **Descargar el Proyecto:**
-    * Ve a la página del repositorio en GitHub: https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git
-    * Haz clic en el botón verde **`< > Code`** (Código).
-    * Selecciona **`Download ZIP`** (Descargar ZIP).
-    * Descomprime el archivo ZIP en una carpeta de tu elección en tu computadora.
-
-2.  **Abrir en el Navegador:**
-    Dentro de la carpeta descomprimida, busca el archivo `index.html` y ábrelo directamente en tu navegador web (haciendo doble clic o arrastrándolo).
-
 ### Interactuar con la Aplicación
 
 Una vez abierta la aplicación en tu navegador:
 
 * **Añadir Nombres:** Escribe un nombre en el campo de texto y haz clic en el botón **"Añadir"** (o presiona Enter).
+* **Eliminar Nombres:** Si necesitas quitar un nombre de la lista, simplemente haz clic en la **"X"** que aparece junto a él.
 * **Sortear Amigo:** Cuando tengas varios nombres, haz clic en el botón **"Sortear amigo"** para ver el resultado.
 * **Reiniciar:** Si quieres comenzar una nueva sesión, haz clic en el botón **"Reiniciar"** para limpiar la lista y el resultado.
 

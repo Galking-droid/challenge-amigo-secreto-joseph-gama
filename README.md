@@ -12,25 +12,25 @@ El objetivo de este proyecto es desarrollar una aplicación web sencilla que per
 
 Esta aplicación incluye las siguientes funcionalidades:
 
-* **Gestión de Nombres:**
-    * **Agregar Amigos:** Permite añadir nombres de participantes a una lista.
-    * **Eliminar Amigos:** Permite quitar nombres individuales de la lista en caso de error.
-    * **Validación de Entrada:** Asegura que no se añadan nombres vacíos o que solo contengan espacios.
-    * **Validación de Duplicados:** Evita que se agreguen nombres repetidos en la lista.
-    * **Visualización de Lista:** Muestra claramente todos los nombres agregados en la interfaz.
-* **Funcionalidades de Sorteo:**
-    * **Sorteo Aleatorio:** Realiza una selección al azar de un "amigo secreto" de la lista de participantes.
-    * **Manejo de Lista Vacía:** Alerta al usuario si intenta sortear sin haber agregado nombres.
-* **Control de Sesión:**
-    * **Botón de Reinicio:** Permite limpiar la lista de amigos y el resultado del sorteo para empezar una nueva sesión.
+- **Gestión de Nombres:**
+  - **Agregar Amigos:** Permite añadir nombres de participantes a una lista.
+  - **Eliminar Amigos:** Permite quitar nombres individuales de la lista en caso de error.
+  - **Validación de Entrada:** Asegura que no se añadan nombres vacíos o que solo contengan espacios.
+  - **Validación de Duplicados:** Evita que se agreguen nombres repetidos en la lista.
+  - **Visualización de Lista:** Muestra claramente todos los nombres agregados en la interfaz.
+- **Funcionalidades de Sorteo:**
+  - **Sorteo Aleatorio:** Realiza una selección al azar de un "amigo secreto" de la lista de participantes.
+  - **Manejo de Lista Vacía:** Alerta al usuario si intenta sortear sin haber agregado nombres.
+- **Control de Sesión:**
+  - **Botón de Reinicio:** Permite limpiar la lista de amigos y el resultado del sorteo para empezar una nueva sesión.
 
 ---
 
 ## Tecnologías Utilizadas
 
-* **JavaScript:** Contiene toda la lógica principal de la aplicación, incluyendo la gestión de nombres, validaciones y el sorteo.
-* **HTML:** Proporciona la estructura base de la página web (suministrada como parte del desafío).
-* **CSS:** Define los estilos visuales y el diseño de la interfaz de usuario (suministrado como parte del desafío).
+- **JavaScript:** Contiene toda la lógica principal de la aplicación, incluyendo la gestión de nombres, validaciones y el sorteo.
+- **HTML:** Proporciona la estructura base de la página web (suministrada como parte del desafío).
+- **CSS:** Define los estilos visuales y el diseño de la interfaz de usuario (suministrado como parte del desafío).
 
 ---
 
@@ -47,11 +47,15 @@ Tienes dos maneras de usar esta aplicación:
 
 1.  **Clonar el Repositorio:**
     Abre tu terminal o línea de comandos y ejecuta el siguiente comando para descargar el proyecto:
+
     ```bash
     git clone [https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git](https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git)
 
+    ```
+
 2.  **Acceder al Directorio del Proyecto:**
     Navega al directorio del proyecto que acabas de clonar:
+
     ```bash
     cd challenge-amigo-secreto-joseph-gama
     ```
@@ -63,9 +67,7 @@ Tienes dos maneras de usar esta aplicación:
 
 Una vez abierta la aplicación en tu navegador:
 
-* **Añadir Nombres:** Escribe un nombre en el campo de texto y haz clic en el botón **"Añadir"** (o presiona Enter).
-* **Eliminar Nombres:** Si necesitas quitar un nombre de la lista, simplemente haz clic en la **"X"** que aparece junto a él.
-* **Sortear Amigo:** Cuando tengas varios nombres, haz clic en el botón **"Sortear amigo"** para ver el resultado.
-* **Reiniciar:** Si quieres comenzar una nueva sesión, haz clic en el botón **"Reiniciar"** para limpiar la lista y el resultado.
-
-
+- **Añadir Nombres:** Escribe un nombre en el campo de texto y haz clic en el botón **"Añadir"** (o presiona Enter).
+- **Eliminar Nombres:** Si necesitas quitar un nombre de la lista, simplemente haz clic en la **"X"** que aparece junto a él.
+- **Sortear Amigo:** Cuando tengas varios nombres, haz clic en el botón **"Sortear amigo"** para ver el resultado.
+- **Reiniciar:** Si quieres comenzar una nueva sesión, haz clic en el botón **"Reiniciar"** para limpiar la lista y el resultado.

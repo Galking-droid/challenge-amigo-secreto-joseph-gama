@@ -173,6 +173,10 @@ ul {
   justify-content: center;
 }
 
+.button-reiniciar:hover {
+  background-color: #a1a1a1;
+}
+
 /* Estilos para el botón de eliminar */
 .boton-eliminar {
   background-color: #ff4d4d;

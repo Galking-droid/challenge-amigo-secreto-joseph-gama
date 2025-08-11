@@ -1,128 +1,168 @@
-let amigos = []; // Declaración array para almacenar los nombres
-let participantes = []; // Declaración array para almacenar los participantes del sorteo
+// --- Declaración de Variables Globales ---
 
-// Función para agregar amigos
+// Array principal para almacenar los nombres de todos los amigos agregados.
+let amigos = [];
+// Array temporal para almacenar los nombres disponibles para el sorteo en una ronda.
+let participantes = [];
+
+// --- Funciones del Proyecto ---
+
+/**
+ * Muestra un mensaje de feedback dinámico en la interfaz por 3 segundos.
+ * @param {string} texto - El mensaje a mostrar.
+ * @param {string} tipo - El tipo de mensaje ('info', 'error', 'exito') para aplicar estilos CSS.
+ */
+function mostrarMensaje(texto, tipo = "info") {
+  let elementoMensaje = document.getElementById("mensaje");
+  elementoMensaje.textContent = texto; // Limpia cualquier clase de estilo de mensajes previa.
+
+  elementoMensaje.classList.remove("info", "error", "exito"); // Agrega la clase de estilo según el tipo de mensaje.
+  elementoMensaje.classList.add(tipo); // Hace el mensaje visible.
+
+  elementoMensaje.style.opacity = "1"; // Oculta el mensaje después de 3 segundos usando un temporizador.
+
+  setTimeout(() => {
+    elementoMensaje.style.opacity = "0";
+  }, 3000);
+}
+
+/**
+ * Agrega un amigo a la lista, con validaciones de entrada.
+ */
 function agregarAmigo() {
-  // Capturar el valor del campo de entrada
-  let nombreAmigo = document.getElementById("amigo").value;
-  // Validar la entrada: asegurar que el campo no esté vacío
+  // Captura el valor del campo de entrada de texto.
+  let nombreAmigo = document.getElementById("amigo").value; // Validación 1: El campo no puede estar vacío.
+
   if (nombreAmigo.trim() === "") {
-    alert("Por favor, inserte un nombre.");
-    return; //Salir de la función si no se ha ingresado nombre
-  }
+    mostrarMensaje("Por favor, inserte un nombre.", "error");
+    return;
+  } // Elimina espacios en blanco al inicio y al final del nombre.
 
-  nombreAmigo = nombreAmigo.trim(); // Para eliminar espacios en blanco al inicio y final
+  nombreAmigo = nombreAmigo.trim();
+  let nombreAmigoLowerCase = nombreAmigo.toLowerCase(); // Validación 2: El nombre no puede estar repetido.
 
-  // Validación de nombre repetido
-  // Convierte nombre a minusculas para validar
-  let nombreAmigoLowerCase = nombreAmigo.toLowerCase();
   if (
     amigos.some(
       (amigoExistente) => amigoExistente.toLowerCase() === nombreAmigoLowerCase
     )
   ) {
-    alert(
-      "¡Ese nombre ya ha sido agregado! Por favor, inserte un nombre diferente."
+    mostrarMensaje(
+      "¡Ese nombre ya ha sido agregado! Por favor, inserte un nombre diferente.",
+      "error"
     );
-    document.getElementById("amigo").value = ""; // Limpia el campo
-    return; // Salir de la función si el nombre está repetido
-  }
+    document.getElementById("amigo").value = "";
+    return;
+  } // Agrega el nuevo nombre a los arrays de amigos y participantes.
 
-  amigos.push(nombreAmigo); //Agrega el nombre al array
+  amigos.push(nombreAmigo);
+  participantes.push(nombreAmigo);
 
-  participantes.push(nombreAmigo); // Agrega el nombre al array de participantes para el sorteo
+  document.getElementById("amigo").value = ""; // Muestra un mensaje de éxito y actualiza la lista visual.
 
-  document.getElementById("amigo").value = ""; // Limpia el campo
-
+  mostrarMensaje("¡Amigo agregado con éxito!", "exito");
   actualizarListaAmigos();
 }
 
-// Función para actualizar lista amigos en la interfaz
+/**
+ * Actualiza la lista de amigos en la interfaz HTML.
+ */
 function actualizarListaAmigos() {
-  let listaAmigos = document.getElementById("listaAmigos"); // Obtiene el elemento de la lista HTML
-  listaAmigos.innerHTML = ""; // Limpia la lista
-  // Itera sobre el array amigos
+  let listaAmigos = document.getElementById("listaAmigos"); // Limpia todo el contenido de la lista para volver a renderizarla.
+  listaAmigos.innerHTML = ""; // Recorre el array de amigos para crear un elemento de lista por cada nombre.
+
   for (let i = 0; i < amigos.length; i++) {
-    let li = document.createElement("li"); // Crea elemento lista
-    li.textContent = amigos[i]; // Asigna el nombre del amigo como contenido de la lista
+    let li = document.createElement("li");
+    li.textContent = amigos[i]; // Crea y configura el botón para eliminar nombres.
 
-    // Boton para eliminar nombres
     let botonEliminar = document.createElement("button");
-    botonEliminar.textContent = "X"; // O 'Eliminar', o un ícono si tienes Font Awesome
-    botonEliminar.classList.add("boton-eliminar"); // Para darle estilos en CSS
+    botonEliminar.textContent = "X";
+    botonEliminar.classList.add("boton-eliminar"); // Asigna un evento 'onclick' al botón para llamar a la función 'excluirAmigo'.
 
-    // Función para habilitar click para eliminar
     botonEliminar.onclick = function () {
-      excluirAmigo(i); // Llamamos a la nueva función con el índice del amigo
-    };
+      excluirAmigo(i);
+    }; // Añade el botón al elemento de la lista y el elemento de la lista al HTML.
 
-    li.appendChild(botonEliminar); // Añade botón a la lista
-
+    li.appendChild(botonEliminar);
     listaAmigos.appendChild(li);
   }
 }
 
-// Función para sortear los amigos
+/**
+ * Realiza el sorteo de un amigo secreto y actualiza la interfaz.
+ */
 function sortearAmigo() {
+  // Lógica para verificar el estado de la lista antes de sortear.
   if (participantes.length === 0) {
-    alert("Agregue al menos un amigo para sortear.");
+    if (amigos.length === 0) {
+      mostrarMensaje("Agregue al menos un amigo para sortear.", "error");
+    } else {
+      mostrarMensaje("Ya se han sorteado todos los participantes.", "info");
+    }
     return;
-  }
+  } // Genera un índice aleatorio para seleccionar un participante.
 
   let indiceAleatorio = Math.floor(Math.random() * participantes.length);
-  let amigoSorteado = participantes[indiceAleatorio];
+  let amigoSorteado = participantes[indiceAleatorio]; // Elimina al amigo sorteado del array de participantes para que no vuelva a salir.
 
-  // Mostrar el resultado
-  let resultadoHTML = document.getElementById("resultado");
-  resultadoHTML.innerHTML = `¡Tu amigo secreto es: ${amigoSorteado}!`;
+  participantes.splice(indiceAleatorio, 1); // Encuentra el elemento de lista del amigo sorteado en el HTML.
 
-  // --- LÓGICA CLAVE PARA INHABILITAR EL NOMBRE ---
-  // 1. Eliminar al amigo sorteado del array de participantes
-  participantes.splice(indiceAleatorio, 1);
-
-  // 2. Encontrar al amigo sorteado en la lista visible y tacharlo
   let listaHTML = document.getElementById("listaAmigos");
   let listaItems = listaHTML.getElementsByTagName("li");
 
   for (let i = 0; i < listaItems.length; i++) {
-    // Obtenemos el nombre del amigo en la lista visible (sin el botón 'X')
+    // Extrae el nombre del elemento de lista.
     let nombreLi = listaItems[i].firstChild.textContent;
     if (nombreLi.trim() === amigoSorteado.trim()) {
-      listaItems[i].classList.add("tachado");
-      break; // Salimos del bucle una vez que encontramos al amigo
+      // Añade una clase para la animación de selección.
+      listaItems[i].classList.add("sorteado-animacion"); // Usa un temporizador para tachar el nombre después de la animación.
+      setTimeout(() => {
+        listaItems[i].classList.add("tachado");
+        listaItems[i].classList.remove("sorteado-animacion");
+      }, 1500);
+
+      break;
     }
-  }
+  } // Muestra el resultado del sorteo en la interfaz.
+
+  let resultadoHTML = document.getElementById("resultado");
+  resultadoHTML.innerHTML = `¡Tu amigo secreto es: ${amigoSorteado}!`;
 }
 
-// Función excluir amigo del array
+/**
+ * Elimina un amigo de la lista por su índice.
+ * @param {number} indice - El índice del amigo a eliminar en el array.
+ */
 function excluirAmigo(indice) {
-  // Splice para eliminar elementos del array
+  let amigoExcluido = amigos[indice]; // Elimina el amigo de ambos arrays.
   amigos.splice(indice, 1);
-
-  // Vuelve a llamar a actualizarListaAmigos para que la interfaz se refresque
+  let indiceParticipante = participantes.indexOf(amigoExcluido);
+  if (indiceParticipante !== -1) {
+    participantes.splice(indiceParticipante, 1);
+  } // Actualiza la interfaz, muestra un mensaje de éxito y limpia el resultado.
   actualizarListaAmigos();
-
-  // Para limpiar el sorteo, si ya estaba en función.
+  mostrarMensaje("Amigo eliminado con éxito.", "exito");
   document.getElementById("resultado").innerHTML = "";
 }
 
-// Función para el botón de reinicio
+/**
+ * Reinicia la aplicación a su estado inicial.
+ */
 function reiniciar() {
-  // Vacia el array de amigos
+  // Vacia ambos arrays.
   amigos = [];
-  participantes = []; // Resetea el array de participantes
+  participantes = []; // Actualiza la interfaz para reflejar los arrays vacíos.
 
-  // Limpiar la lista de nombres mostrada en el HTML
-  actualizarListaAmigos();
+  actualizarListaAmigos(); // Limpia el resultado del sorteo y el campo de entrada.
 
-  document.getElementById("listaAmigos").innerHTML = ""; // Limpia la lista de amigos en la interfaz
+  document.getElementById("resultado").innerHTML = "";
+  document.getElementById("amigo").value = ""; // Muestra un mensaje de reinicio.
 
-  document.getElementById("resultado").innerHTML = ""; // Limpia el resultado del sorteo previo
-
-  document.getElementById("amigo").value = ""; // Limpia el campo de entrada de nombres
+  mostrarMensaje("Aplicación reiniciada. ¡Listo para comenzar!", "info");
 }
 
-// Agregar el nombre del amigo al accionar la tecla enter.
+// --- Eventos de Interacción ---
+
+// Captura el evento de presionar la tecla 'Enter' en el campo de entrada.
 const inputNombre = document.getElementById("amigo");
 
 if (inputNombre) {

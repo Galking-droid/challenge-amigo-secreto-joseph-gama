@@ -20,8 +20,9 @@ Esta aplicación incluye las siguientes funcionalidades:
   - **Visualización de Lista:** Muestra claramente todos los nombres agregados en la interfaz.
 - **Funcionalidades de Sorteo:**
   - **Sorteo Aleatorio:** Realiza una selección al azar de un "amigo secreto" de la lista de participantes.
-  - **Manejo de Lista Vacía:** Alerta al usuario si intenta sortear sin haber agregado nombres.
+  - **Manejo de Lista Vacía:** Muestra un mensaje dinámico si intentas sortear sin haber agregado nombres o cuando ya se sortearon todos los participantes.
 - **Control de Sesión:**
+  - **Feedback Visual:** Utiliza mensajes dinámicos en la interfaz para informar sobre el estado de la aplicación (éxito, error, etc.) en lugar de alertas intrusivas.
   - **Botón de Reinicio:** Permite limpiar la lista de amigos y el resultado del sorteo para empezar una nueva sesión.
 
 ---
@@ -50,7 +51,6 @@ Tienes dos maneras de usar esta aplicación:
 
     ```bash
     git clone [https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git](https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git)
-
     ```
 
 2.  **Acceder al Directorio del Proyecto:**
@@ -67,7 +67,7 @@ Tienes dos maneras de usar esta aplicación:
 
 Una vez abierta la aplicación en tu navegador:
 
-- **Añadir Nombres:** Escribe un nombre en el campo de texto y haz clic en el botón **"Añadir"** (o presiona Enter).
+- **Añadir Nombres:** Escribe un nombre en el campo de texto y haz clic en el botón **"Añadir"** (o presiona Enter). Recibirás un mensaje de éxito o de error si el nombre ya existe.
 - **Eliminar Nombres:** Si necesitas quitar un nombre de la lista, simplemente haz clic en la **"X"** que aparece junto a él.
-- **Sortear Amigo:** Cuando tengas varios nombres, haz clic en el botón **"Sortear amigo"** para ver el resultado.
+- **Sortear Amigo:** Cuando tengas varios nombres, haz clic en el botón **"Sortear amigo"**. El nombre sorteado **tendrá una animación visual** antes de quedar tachado. La aplicación no sorteará nombres repetidos en la misma sesión y te informará cuando ya se hayan sorteado todos.
 - **Reiniciar:** Si quieres comenzar una nueva sesión, haz clic en el botón **"Reiniciar"** para limpiar la lista y el resultado.

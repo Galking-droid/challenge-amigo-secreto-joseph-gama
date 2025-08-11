@@ -125,6 +125,34 @@ button {
   background-color: #a1a1a1;
 }
 
+/* Estilos para el feedback visual */
+.feedback-message {
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0; /* Por defecto, el mensaje está oculto */
+}
+
+/* Clases de tipo para los mensajes */
+.feedback-message.info {
+  color: #4b69fd;
+  background-color: #e6e9ff;
+}
+
+.feedback-message.error {
+  color: #cc0000;
+  background-color: #ffe6e6;
+}
+
+.feedback-message.exito {
+  color: #05df05;
+  background-color: #e6ffe6;
+}
+
 /* Listas */
 ul {
   list-style-type: none;
@@ -216,4 +244,26 @@ ul {
 .tachado {
   text-decoration: line-through;
   color: #888; /* Opcional: Un color gris para que se note que está inhabilitado */
+}
+
+/* Animación para el nombre sorteado */
+@keyframes parpadeo {
+  0% {
+    transform: scale(1);
+    color: inherit;
+  }
+
+  50% {
+    transform: scale(1.1);
+    color: var(--color-button);
+  }
+
+  100% {
+    transform: scale(1);
+    color: inherit;
+  }
+}
+
+.sorteado-animacion {
+  animation: parpadeo 1.5s ease-in-out;
 }

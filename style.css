@@ -212,3 +212,8 @@ ul {
   padding: 8px 15px;
   border-bottom: 1px dashed var(--color-tertiary);
 }
+
+.tachado {
+  text-decoration: line-through;
+  color: #888; /* Opcional: Un color gris para que se note que está inhabilitado */
+}

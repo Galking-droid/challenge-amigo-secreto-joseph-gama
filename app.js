@@ -1,4 +1,5 @@
 let amigos = []; // Declaración array para almacenar los nombres
+let participantes = []; // Declaración array para almacenar los participantes del sorteo
 
 // Función para agregar amigos
 function agregarAmigo() {
@@ -28,6 +29,8 @@ function agregarAmigo() {
   }
 
   amigos.push(nombreAmigo); //Agrega el nombre al array
+
+  participantes.push(nombreAmigo); // Agrega el nombre al array de participantes para el sorteo
 
   document.getElementById("amigo").value = ""; // Limpia el campo
 
@@ -61,23 +64,34 @@ function actualizarListaAmigos() {
 
 // Función para sortear los amigos
 function sortearAmigo() {
-  // Valida que haya amigos disponibles en el array
-  if (amigos.length === 0) {
+  if (participantes.length === 0) {
     alert("Agregue al menos un amigo para sortear.");
     return;
   }
-  // Obtiene el elemento donde se mostrará el resultado del sorteo
-  let resultadoHTML = document.getElementById("resultado");
-  resultadoHTML.innerHTML = ""; // Limpia cualquier resultado anterior
-  // Genera un índice aleatorio
-  let indiceAleatorio = Math.floor(Math.random() * amigos.length);
-  // Obtiene el nombre sorteado usando el índice aleatorio
-  let amigoSorteado = amigos[indiceAleatorio];
 
-  // Muestra el resultado
-  let liResultado = document.createElement("li");
-  liResultado.textContent = `¡Su amigo secreto es: ${amigoSorteado}!`;
-  resultadoHTML.appendChild(liResultado);
+  let indiceAleatorio = Math.floor(Math.random() * participantes.length);
+  let amigoSorteado = participantes[indiceAleatorio];
+
+  // Mostrar el resultado
+  let resultadoHTML = document.getElementById("resultado");
+  resultadoHTML.innerHTML = `¡Tu amigo secreto es: ${amigoSorteado}!`;
+
+  // --- LÓGICA CLAVE PARA INHABILITAR EL NOMBRE ---
+  // 1. Eliminar al amigo sorteado del array de participantes
+  participantes.splice(indiceAleatorio, 1);
+
+  // 2. Encontrar al amigo sorteado en la lista visible y tacharlo
+  let listaHTML = document.getElementById("listaAmigos");
+  let listaItems = listaHTML.getElementsByTagName("li");
+
+  for (let i = 0; i < listaItems.length; i++) {
+    // Obtenemos el nombre del amigo en la lista visible (sin el botón 'X')
+    let nombreLi = listaItems[i].firstChild.textContent;
+    if (nombreLi.trim() === amigoSorteado.trim()) {
+      listaItems[i].classList.add("tachado");
+      break; // Salimos del bucle una vez que encontramos al amigo
+    }
+  }
 }
 
 // Función excluir amigo del array
@@ -96,9 +110,12 @@ function excluirAmigo(indice) {
 function reiniciar() {
   // Vacia el array de amigos
   amigos = [];
+  participantes = []; // Resetea el array de participantes
 
   // Limpiar la lista de nombres mostrada en el HTML
   actualizarListaAmigos();
+
+  document.getElementById("listaAmigos").innerHTML = ""; // Limpia la lista de amigos en la interfaz
 
   document.getElementById("resultado").innerHTML = ""; // Limpia el resultado del sorteo previo
 

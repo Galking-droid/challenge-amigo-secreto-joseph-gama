@@ -50,7 +50,7 @@ Tienes dos maneras de usar esta aplicación:
     Abre tu terminal o línea de comandos y ejecuta el siguiente comando para descargar el proyecto:
 
     ```bash
-    git clone [https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git](https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git)
+    git clone https://github.com/Galking-droid/challenge-amigo-secreto-joseph-gama.git
     ```
 
 2.  **Acceder al Directorio del Proyecto:**
